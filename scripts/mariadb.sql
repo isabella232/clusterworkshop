@@ -1,0 +1,9 @@
+GRANT REPLICATION CLIENT, REPLICATION SLAVE, SHOW DATABASES, SUPER, RELOAD ON *.* TO 'maxscale'@'127.0.0.1' IDENTIFIED BY 'demo_password';
+GRANT SELECT ON mysql.db TO 'maxscale'@'127.0.0.1';
+GRANT SELECT ON mysql.user TO 'maxscale'@'127.0.0.1';
+GRANT SELECT ON mysql.tables_priv TO 'maxscale'@'127.0.0.1';
+GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON maxscale_schema.* TO 'maxscale'@'127.0.0.1';
+
+GRANT ALL PRIVILEGES ON *.* TO 'dba'@'127.0.0.1' IDENTIFIED BY 'demo_password' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;

@@ -1,0 +1,114 @@
+###############################################################
+# General Settings
+###############################################################
+[mysqld]
+basedir                         	= /usr
+tmpdir                          	= /tmp
+gtid_domain_id                  	= 1
+character_set_server            	= utf8
+collation_server                	= utf8_general_ci
+init_connect                    	= 'SET NAMES utf8'
+user                            	= mysql
+default_storage_engine          	= InnoDB
+enforce_storage_engine          	= InnoDB
+userstat                        	= ON
+skip_name_resolve
+
+################################################################
+# Safety, Security & Recovery
+################################################################
+symbolic_links                  	= 0
+myisam_recover_options          	= FORCE,BACKUP
+max_allowed_packet              	= 32M
+max_connect_errors              	= 1000000
+log_bin_trust_function_creators 	= ON
+explicit_defaults_for_timestamp 	= ON
+
+################################################################
+# Caches, Buffers & Connections
+################################################################
+query_cache_type                	= 0
+query_cache_size                	= 0
+thread_handling                 	= pool-of-threads
+max_connections                 	= 500
+wait_timeout                    	= 600
+interactive_timeout             	= 600
+
+################################################################
+# MySQL Logs
+################################################################
+binlog_format                   	= ROW
+binlog_row_image                	= FULL
+expire_logs_days                	= 3
+slow_query_log                  	= ON
+log_queries_not_using_indexes   	= 0
+log_warnings                    	= 2
+log_slow_verbosity              	= query_plan,innodb,explain
+long_query_time                 	= 5
+
+################################################################
+# InnoDB Variables
+################################################################
+innodb_file_per_table           	= ON
+innodb_flush_log_at_trx_commit  	= 1
+innodb_flush_method             	= O_DIRECT
+innodb_log_buffer_size          	= 16M
+innodb_log_file_size            	= 1G
+innodb_autoinc_lock_mode        	= 2
+innodb_rollback_on_timeout      	= ON
+innodb_force_primary_key        	= ON
+innodb_print_all_deadlocks      	= ON
+innodb_defragment               	= ON
+
+################################################################
+# Galera Settings
+################################################################
+wsrep_on                        	= ON
+wsrep_cluster_address           	= gcomm://127.0.0.1:4567,127.0.0.1:5567,127.0.0.1:6567
+wsrep_provider                  	= /usr/lib64/galera/libgalera_smm.so
+wsrep_provider_options          	= "gcs.fc_limit=32;gcache.size=2G;gcache.recover=yes"
+wsrep_cluster_name              	= galera_cluster
+wsrep_forced_binlog_format      	= ROW
+wsrep_sst_method                	= rsync
+
+################################################################
+# MySQL Multi
+################################################################
+[mysqld1]
+datadir                         	= /mariadb/1/data
+socket                          	= /mariadb/1/data/mysql.sock
+port                            	= 3307
+pid-file                        	= /mariadb/1/data/mysql.pid
+server_id                       	= 1
+log_bin                         	= /mariadb/1/log/mariadb-bin
+log_bin_index                   	= /mariadb/1/log/mariadb-bin.index
+log_error                       	= /mariadb/1/log/mariadb-error.log
+slow_query_log_file             	= /mariadb/1/log/mariadb-slow.log
+wsrep_node_address              	= 127.0.0.1:4567
+wsrep_node_name                 	= node1
+
+[mysqld2]
+datadir                         	= /mariadb/2/data
+socket                          	= /mariadb/2/data/mysql.sock
+port                            	= 3308
+pid-file                        	= /mariadb/2/data/mysql.pid
+server_id                       	= 2
+log_bin                         	= /mariadb/2/log/mariadb-bin
+log_bin_index                   	= /mariadb/2/log/mariadb-bin.index
+log_error                       	= /mariadb/2/log/mariadb-error.log
+slow_query_log_file             	= /mariadb/2/log/mariadb-slow.log
+wsrep_node_address              	= 127.0.0.1:5567
+wsrep_node_name                 	= node2
+
+[mysqld3]
+datadir                         	= /mariadb/3/data
+socket                          	= /mariadb/3/data/mysql.sock
+port                            	= 3309
+pid-file                        	= /mariadb/3/data/mysql.pid
+server_id                       	= 3
+log_bin                         	= /mariadb/3/log/mariadb-bin
+log_bin_index                   	= /mariadb/3/log/mariadb-bin.index
+log_error                       	= /mariadb/3/log/mariadb-error.log
+slow_query_log_file             	= /mariadb/3/log/mariadb-slow.log
+wsrep_node_address              	= 127.0.0.1:6567
+wsrep_node_name                 	= node3
