@@ -13,29 +13,39 @@ This docker image has 1 MaxScale instance and 3 MariaDB Galera instances install
 
 # Prerequisites #
 
-* [Docker](https://www.docker.com/products/docker-desktop)
+* [docker](https://www.docker.com/products/docker-desktop)
 * [git](https://git-scm.com/downloads)
 
 # Getting Started #
 ```
-1. $ git clone https://github.com/mariadb-corporation/clusterworkshop.git
-2. $ cd clusterworkshop
-3. $ docker build . -t clusterworkshop
-4. $ docker run -it clusterworkshop
+$ git clone https://github.com/mariadb-corporation/clusterworkshop.git
+$ cd clusterworkshop
+$ docker build . -t clusterworkshop
+$ docker run -it clusterworkshop
 ```
-To connect to the Galera cluster through MaxScale:
 
-```
-$ mysql
-```
 To view cluster information through Maxscale:
 
 ```
 $ maxctrl list servers
 ```
 
+To connect to the Galera cluster through MaxScale:
+
+```
+$ mysql
+```
+
+To connect to an individual Galera node directly:
+
+```
+$ mysql -P 3307  ### Node1
+$ mysql -P 3308  ### Node2
+$ mysql -P 3309  ### Node3
+```
+
 To start (or stop) an individual Galera node:
 ```
-$ mysqld_multi start 1 ### Starts node 1
-$ mysqld_multi stop  1 ### Stops node 1
+$ mysqld_multi start 1 ### Start Node1
+$ mysqld_multi stop  1 ### Stop Node1
 ```
