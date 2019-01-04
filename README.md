@@ -29,7 +29,7 @@ $ docker pull toddstoffel/clusterworkshop
 $ docker run -it toddstoffel/clusterworkshop
 ```
 
-# Working With Cluster #
+# Working With The Cluster #
 
 To view cluster information through Maxscale:
 
