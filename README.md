@@ -16,12 +16,17 @@ This docker image has 1 MaxScale instance and 3 MariaDB Galera instances install
 * [docker](https://www.docker.com/products/docker-desktop)
 * [git](https://git-scm.com/downloads)
 
-# Getting Started #
+# Option1: Getting Started Using Github #
 ```
 $ git clone https://github.com/mariadb-corporation/clusterworkshop.git
 $ cd clusterworkshop
 $ docker build . -t clusterworkshop
 $ docker run -it clusterworkshop
+```
+# Option2: Getting Started Using Docker Hub #
+```
+$ docker pull toddstoffel/clusterworkshop
+$ docker run -it toddstoffel/clusterworkshop
 ```
 
 To view cluster information through Maxscale:
