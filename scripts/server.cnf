@@ -50,15 +50,13 @@ long_query_time                 	= 5
 # InnoDB Variables
 ################################################################
 innodb_file_per_table           	= ON
-innodb_flush_log_at_trx_commit  	= 1
+innodb_flush_log_at_trx_commit  	= 2
 innodb_flush_method             	= O_DIRECT
 innodb_log_buffer_size          	= 16M
 innodb_log_file_size            	= 1G
 innodb_autoinc_lock_mode        	= 2
 innodb_rollback_on_timeout      	= ON
 innodb_force_primary_key        	= ON
-innodb_print_all_deadlocks      	= ON
-innodb_defragment               	= ON
 
 ################################################################
 # Galera Settings
@@ -66,10 +64,10 @@ innodb_defragment               	= ON
 wsrep_on                        	= ON
 wsrep_cluster_address           	= gcomm://127.0.0.1:4567,127.0.0.1:5567,127.0.0.1:6567
 wsrep_provider                  	= /usr/lib64/galera/libgalera_smm.so
-wsrep_provider_options          	= "gcs.fc_limit=32;gcache.size=2G;gcache.recover=yes"
 wsrep_cluster_name              	= galera_cluster
 wsrep_forced_binlog_format      	= ROW
 wsrep_sst_method                	= rsync
+wsrep_slave_threads             	= 8
 
 ################################################################
 # MySQL Multi
