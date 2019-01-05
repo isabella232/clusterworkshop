@@ -13,14 +13,14 @@ RUN mysql_install_db --datadir=/mariadb/1/data/
 RUN chown -R mysql:mysql /mariadb
 RUN mkdir -p /root/scripts/
 
-COPY scripts/docker-entrypoint.sh /root/scripts/docker-entrypoint.sh
+COPY scripts/bootstrap.sh /root/scripts/bootstrap.sh
 COPY scripts/mariadb_sig.txt /root/scripts/mariadb_sig.txt
 COPY scripts/*.sql /root/scripts/
 COPY scripts/.my.cnf /root/.my.cnf
 
-RUN chmod +x /root/scripts/docker-entrypoint.sh
+RUN chmod +x /root/scripts/bootstrap.sh
 
 RUN cat /root/scripts/mariadb_sig.txt >> /etc/MOTD
 RUN echo "clear;cat /etc/MOTD" >> ~/.bashrc
 
-ENTRYPOINT ["/root/scripts/docker-entrypoint.sh"]
+ENTRYPOINT ["/root/scripts/bootstrap.sh"]
